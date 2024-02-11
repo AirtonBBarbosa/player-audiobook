@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Player AudioBook</title>
+</head>
+<body>
+    <main class="player">
+        <img src="./images/dom-casmurro.jpeg" alt="album" id="image" class="image">
+        <div class="progress">
+            <div id="informacoes-faixa">
+                <div id="sessao">Sessão 1</div>
+                <div id="nome-autor">Machado de Assis</div>
+            </div>
+            <div class="progress-time">
+                <span id="currenttimetext" class="left">00:00</span>
+                <span id="durationtimetext" class="right">00:00</span>
+            </div>
+            <div class="progress-bar">
+                <input type="range" name="" id="seekslider" class="seekslider" min="0" max="100" value="0" step="1">
+            </div>
+        </div>
+        <div class="container-aplicativo">
+            <audio id="audio-capitulo" src="./books/dom-casmurro/1.mp3"></audio>
+            <div id="container-botoes">
+                <button id="anterior" class="bi bi-skip-backward-fill"></button>
+                <button id="play-pause" class="bi bi-play-circle-fill"></button>
+                <button id="proximo" class="bi bi-skip-forward-fill"></button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <!-- SCRIPT BARRA DE PROGRESSO -->
+    <script>
+        const audio = document.getElementById('audio-capitulo');
+        const seekSlider = document.getElementById('seekslider');
+        const currentTimeText = document.getElementById('currenttimetext');
+        const durationTimeText = document.getElementById('durationtimetext');
+
+        function updateProgress() {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            seekSlider.value = progress;
+            const currentMinutes = Math.floor(audio.currentTime / 60);
+            const currentSeconds = Math.floor(audio.currentTime - currentMinutes * 60);
+            const durationMinutes = Math.floor(audio.duration / 60);
+            const durationSeconds = Math.floor(audio.duration - durationMinutes * 60);
+            currentTimeText.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+            durationTimeText.textContent = `${durationMinutes}:${durationSeconds}`;
+        }
+
+        seekSlider.addEventListener('input', function() {
+            const seekto = audio.duration * (seekSlider.value / 100);
+            audio.currentTime = seekto;
+        });
+
+        audio.addEventListener('timeupdate', updateProgress);
+    </script>
+</body>
+</html>

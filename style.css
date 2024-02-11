@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+html[data-theme='dark']{
+    --bg: #292929;
+    --color-text: #e2e2e2;
+    --banner: #fefefe;
+}
+
+body{
+    background: var(--bg);
+    color: var(--color-text);
+}
+
+.container-aplicativo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#informacoes-faixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.5rem;
+}  
+  
+#anterior, #proximo {
+    font-size: 3rem;
+}
+  
+#play-pause {
+    font-size: 4rem;
+}
+  
+#container-botoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+} 
+
+button {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.player{
+    width: 80%;
+    min-height: 550px;
+    max-width: 300px;
+    padding: 3rem 1.25rem;
+    margin: 2rem auto;
+    background: var(--bg);
+    box-shadow: var(--color-shadow);
+}
+
+.image{
+    display: block;
+    width: 175px;
+    height: 175px;
+    object-fit: cover;
+    margin: 1rem auto;
+    box-shadow: var(--color-shadow);
+}
+  
+.progress-bar {
+    width: 0%;
+    height: 30px;
+}
+  
+.progress-time{
+    padding: 3px 5px;
+    color: var(--color-text);
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.seekslider{
+    width: 100px;
+    height: 3px !important;
+    appearance: none;
+    border-radius: 10px;
+    background: var(--color-text);
+    z-index: 3;
+    outline: none;
+    position: fixed;
+    margin-left: 82px;
+    margin-top: 10px;
+}
+
+.seekslider::-webkit-slider-thumb{
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--color-text);
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    transform: scale(1);
+}
+
